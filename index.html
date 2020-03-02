@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>super-Chat</title>
+</head>
+<body>
+    <div id="nbr_users"></div>
+   
+    <section id="conversation">
+
+    </section>
+    <form action="/" method="POST" id="send" >
+            <input type="text" name="msg" id="msgcontent">
+            <input type="submit" value="send">
+    </form>
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+<script>
+var socket = io.connect('http://localhost:8080');
+    var pseudo = prompt('donnez votre pseudo');
+    socket.emit('new_user', pseudo);
+    document.title = pseudo +': ' + document.title;
+
+    socket.on('nbr_users', function(data){
+        $('#nbr_users').html(data);
+    })
+    socket.on('new_user', function(pseudo){
+        $('#conversation').prepend('<p><em> ' 
+            + pseudo + ' is here </em></p>');
+    });
+     $('#send').submit(function(){
+      
+         message = $('#msgcontent').val();
+         socket.emit('msg',message);
+         $('#conversation').prepend(msgcontainer(pseudo, message));
+         message = $('#msgcontent').val('').focus();
+         return false;
+     })
+     socket.on('msg',function(data){
+        $('#conversation').prepend(msgcontainer(data.pseudo, data.message));
+     })
+    function msgcontainer(pseudo, msg){
+        return '<p> <h5 style="display:inline">' + pseudo +' '+ '</h5>' + '<span>' + 
+            msg + '</span></p>'
+    }
+ </script>    
+</body>
+</html>
