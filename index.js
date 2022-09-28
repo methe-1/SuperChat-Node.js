@@ -22,6 +22,7 @@ io.sockets.on("connection", function (socket) {
   socket.broadcast.emit("nbr_users", nbr_users);
   
   socket.on("new_user", function (pseudo) {
+    socket.pseudo = pseudo;
     socket.broadcast.emit("new_user", ent.encode(pseudo));
     socket.on("msg", function (mess) {
       message = ent.encode(mess);
