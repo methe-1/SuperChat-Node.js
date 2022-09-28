@@ -1,6 +1,10 @@
 {
     "name" : "super-chat",
     "version": "0.1.0",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon"
+    },
     "dependencies": {
         "express": "~4.17.1",
         "ent": "~2.2.0",
