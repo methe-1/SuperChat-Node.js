@@ -1,23 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Super Chat</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-
-    <div id="nbr_users"></div>
-    <section id="conversation"></section>
-
-    <form action="/" method="POST" id="send" >
-        <input type="text" name="msg" id="msgcontent">
-        <input type="submit" value="send">
-    </form>
+    <div class="container">
+        <div class="sub_container">
+            <div id="nbr_users_container">
+                <div>Chatters</div>
+                <div id="nbr_users">
+                    0
+                </div>
+            </div>
+            <div class="chat_container">
+                <div class="chat_sub_cont">
+                    <section id="conversation">
+                        
+                        <div class="conversation_container">
+                          <!--    
+                            <div  class="message_container my_message">
+                                <p class="message my_msg_color">
+                                    <span style="display:inline; font-weight: 900; ">
+                                        ${pseudo}
+                                    </span>
+                                    <span>
+                                        ${msg}
+                                    </span>
+                                </p>
+                            </div>
+                            <div  class="message_container ">
+                                <div style="width: 100%;">
+                                    <div class="msg_sub_cont their_message">
+                                        <div class="message their_msg_color">
+                                            Hello!
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; justify-content: flex-end; padding-right: 15px; ">
+                                        <sub style="font-size: smaller; vertical-align: sub; ">
+                                            methe
+                                        </sub>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div  class="message_container lorem">
+                                <div style="width: 100%;">
+                                    <div class="msg_sub_cont their_message">
+                                        <div class="message their_msg_color">
+                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti adipisci laboriosam velit facere aperiam, cumque in molestiae, consectetur pariatur libero incidunt reprehenderit omnis possimus. Iste neque illum alias autem pariatur?
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; justify-content: flex-end; padding-right: 15px; ">
+                                        <sub style="font-size: smaller; vertical-align: sub; ">
+                                            methe
+                                        </sub>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div  class="message_container my_message">
+                                <p class="message">
+                                    <span style="display:inline; font-weight: 900; ">
+                                        ${pseudo}
+                                    </span>
+                                    <span>
+                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut assumenda non distinctio maxime, inventore, esse dicta corrupti soluta qui recusandae repellat odio, incidunt quas? Repellendus ipsa debitis sit cum suscipit?
+                                    </span>
+                                </p>
+                            </div>
+                            <div  class="message_container my_message">
+                                <p class="message">
+                                    <span style="display:inline; font-weight: 900; ">
+                                        ${pseudo}
+                                    </span>
+                                    <span>
+                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut assumenda non distinctio maxime, inventore, esse dicta corrupti soluta qui recusandae repellat odio, incidunt quas? Repellendus ipsa debitis sit cum suscipit?
+                                    </span>
+                                </p>
+                            </div> -->
+                        </div>
+                    </section>
+                    <form action="/" method="POST" id="send">
+                        <input type="text" name="msg" id="msgcontent">
+                        <span class="button">
+                            <input type="submit"  value="send">
+                        </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="./index.js"></script>
 </body>
+
 </html>

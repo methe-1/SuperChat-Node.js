@@ -1,0 +1,112 @@
+.body{
+    background-color: black;
+}
+.container{
+    display: grid;
+    height: 97vh;
+    width: 97vw;
+    /* background-color: black; */
+    /* color: cadetblue; */
+    justify-content: center;
+    /* align-items: center; */
+}
+.sub_container{
+    width: 30vw;
+    /* background-color: black; */
+}
+#nbr_users_container{
+    display: flex;
+    background-color: blueviolet;
+    /* color: black; */
+    height: 5vh;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.chat_container{
+    height: 70vh;
+}
+.chat_sub_cont{
+    height: 70vh;
+    width: 100%;
+
+}
+#send{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+#msgcontent{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 70%;
+    /* background-attachment: white; */
+}
+#conversation{
+    height: 70vh;
+    width: 100%;
+    display: grid;
+    align-items: flex-end;
+    /* justify-content: center; */
+    overflow-y: auto;
+
+}
+.conversation_container{
+    width: 100%;
+    /* height: 100vh; */
+}
+.message_container{
+    width: 100%;
+}
+.message_container_mb{
+    margin-bottom: 5px;
+}
+.my_message{
+    justify-content: flex-start;
+    align-items: center;
+}
+.msg_sub_cont{
+    /* background-color: blue; */
+    width: 100%;
+    display: flex;
+}
+.their_message{
+    justify-content: flex-end;
+    align-items: center;
+
+}
+.message{
+    width: fit-content;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 15px;
+    max-width: 60%;
+    /* min-width: 20%; */
+    
+}
+.my_msg_color{
+    background-color: green;
+    margin-left: 10px;
+}
+.their_msg_color{
+    background-color: gray;
+    margin-right: 10px;
+}
+.button{ 
+    align-self: center;
+}
+.button > input {
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+} 
+
+@media only screen and (max-width: 768px){
+    .sub_container{
+        width: 90vw;
+        /* background-color: black; */
+    }
+}
