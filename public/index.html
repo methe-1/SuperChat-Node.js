@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Super Chat</title>
     <link rel="stylesheet" href="style.css">
+    <!-- <script src="https://kit.fontawesome.com/4a3908f0ef.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -14,76 +19,16 @@
         <div class="sub_container">
             <div id="nbr_users_container">
                 <div>Chatters</div>
-                <div id="nbr_users">
-                    0
+                <div id="socket_message"></div>
+                <div id="user_wrapper">
+                    <span id="nbr_users">0</span>
+                    <i class="bi bi-person"></i>
                 </div>
             </div>
             <div class="chat_container">
                 <div class="chat_sub_cont">
                     <section id="conversation">
-                        
                         <div class="conversation_container">
-                          <!--    
-                            <div  class="message_container my_message">
-                                <p class="message my_msg_color">
-                                    <span style="display:inline; font-weight: 900; ">
-                                        ${pseudo}
-                                    </span>
-                                    <span>
-                                        ${msg}
-                                    </span>
-                                </p>
-                            </div>
-                            <div  class="message_container ">
-                                <div style="width: 100%;">
-                                    <div class="msg_sub_cont their_message">
-                                        <div class="message their_msg_color">
-                                            Hello!
-                                        </div>
-                                    </div>
-                                    <div style="display: flex; justify-content: flex-end; padding-right: 15px; ">
-                                        <sub style="font-size: smaller; vertical-align: sub; ">
-                                            methe
-                                        </sub>
-                                    </div>
-                                </div>
-                            </div>
-                           
-                            <div  class="message_container lorem">
-                                <div style="width: 100%;">
-                                    <div class="msg_sub_cont their_message">
-                                        <div class="message their_msg_color">
-                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti adipisci laboriosam velit facere aperiam, cumque in molestiae, consectetur pariatur libero incidunt reprehenderit omnis possimus. Iste neque illum alias autem pariatur?
-                                        </div>
-                                    </div>
-                                    <div style="display: flex; justify-content: flex-end; padding-right: 15px; ">
-                                        <sub style="font-size: smaller; vertical-align: sub; ">
-                                            methe
-                                        </sub>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div  class="message_container my_message">
-                                <p class="message">
-                                    <span style="display:inline; font-weight: 900; ">
-                                        ${pseudo}
-                                    </span>
-                                    <span>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut assumenda non distinctio maxime, inventore, esse dicta corrupti soluta qui recusandae repellat odio, incidunt quas? Repellendus ipsa debitis sit cum suscipit?
-                                    </span>
-                                </p>
-                            </div>
-                            <div  class="message_container my_message">
-                                <p class="message">
-                                    <span style="display:inline; font-weight: 900; ">
-                                        ${pseudo}
-                                    </span>
-                                    <span>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut assumenda non distinctio maxime, inventore, esse dicta corrupti soluta qui recusandae repellat odio, incidunt quas? Repellendus ipsa debitis sit cum suscipit?
-                                    </span>
-                                </p>
-                            </div> -->
                         </div>
                     </section>
                     <form action="/" method="POST" id="send">
