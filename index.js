@@ -16,33 +16,48 @@ app.use('/', express.static('public'));
 
 io.sockets.on("connection", async function (socket) {
   
-  db.setItem(ACTIVES, Number(db.getItem(ACTIVES)) + 1);
-
   
-  
-  socket.on("new_user", async function (pseudo) {
+  socket.on("connected_user", async function () {
 
-    socket.broadcast.emit("actives", Number(db.getItem(ACTIVES)));
-    socket.emit('actives', Number(db.getItem(ACTIVES)));
+    const existed_users = JSON.parse(db.getItem(USERS));
 
-    db.setItem(USERS, JSON.stringify([... JSON.parse(db.getItem(USERS)), pseudo]));
-
-    socket.broadcast.emit("new_user", ent.encode(pseudo || ''));
-    socket.emit("welcome", ent.encode(pseudo || ''));
+    socket.emit("receive_users", existed_users);
     
-    socket.on("msg", function (data) {
-      socket.broadcast.emit("msg", { pseudo: data.pseudo, message: ent.encode(data.message) });
-    });
-    socket.on("quit", (pseudo) => {
-      db.setItem(ACTIVES, Number(db.getItem(ACTIVES)) - 1);
+    socket.on('add_user', (pseudo) => {
 
-      // remove user
-      let users = JSON.parse(db.getItem(USERS));
-      db.setItem(USERS, JSON.stringify(users.splice(users.indexOf(pseudo, 1))));
+      db.setItem(ACTIVES, Number(db.getItem(ACTIVES)) + 1);
       
+      // add user 
+      db.setItem(USERS, JSON.stringify([...existed_users, pseudo]));
+      
+      
+      // broadcast to the new user
+      socket.emit("welcome", ent.encode(pseudo || ''));
+      socket.emit('actives', Number(db.getItem(ACTIVES)));
+      
+      
+      // broadcast to eveyone except the new user
+      socket.broadcast.emit("new_user", ent.encode(pseudo || ''));
       socket.broadcast.emit("actives", Number(db.getItem(ACTIVES)));
-      socket.broadcast.emit("user_left", ent.encode(pseudo));
+
+      socket.on("msg", function (data) {
+        socket.broadcast.emit("msg", { pseudo: data.pseudo, message: ent.encode(data.message) });
+      });
+
+      socket.on("quit", (pseudo) => {
+        db.setItem(ACTIVES, Number(db.getItem(ACTIVES)) - 1);
+  
+        // remove user
+        let users = JSON.parse(db.getItem(USERS));
+        db.setItem(USERS, JSON.stringify(users.splice(users.indexOf(pseudo), 1)));
+        
+        socket.broadcast.emit("actives", Number(db.getItem(ACTIVES)));
+        socket.broadcast.emit("user_left", ent.encode(pseudo));
+      })
     })
+
+    
+    
   });
 });
 

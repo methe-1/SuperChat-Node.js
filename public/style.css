@@ -10,9 +10,9 @@
     justify-content: center;
     /* align-items: center; */
 }
+/* For mobile phones: */
 .sub_container{
-    width: 30vw;
-    /* background-color: black; */
+    width: 90vw;
 }
 #nbr_users_container{
     display: flex;
@@ -23,6 +23,18 @@
     align-items: center;
     padding-right: 10px;
     padding-left: 10px;
+}
+#user_wrapper{
+    background-color: black;
+    color: white;
+    /* padding: 2px; */
+    padding-right: 13px;
+    padding-left: 13px;
+    border-radius: 15px;
+    font-family: 'Cairo', sans-serif;
+}
+#nbr_users{
+    font-size: 17px;
 }
 .chat_container{
     height: 70vh;
@@ -104,9 +116,27 @@
 
 } 
 
-@media only screen and (max-width: 768px){
+
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
     .sub_container{
-        width: 90vw;
+        width: 50vw;
         /* background-color: black; */
     }
 }
+
+@media only screen and (min-width: 960px) {
+    /* For desktop: */
+    .sub_container{
+        width: 30vw;
+        
+    }
+}
+
+ /* For mobile phone */
+/* @media only screen and (max-width: 768px){
+    
+    .sub_container{
+        width: 60vw;
+    }
+} */

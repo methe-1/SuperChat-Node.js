@@ -1,28 +1,28 @@
-var socket = io.connect("http://localhost:8080");
-
+var socket = io.connect("https://superchat.onrender.com");
+var message_vanish_id = null;
 
 
 socket.on("actives", function (data) {
   $("#nbr_users").html(data);
 });
 
-// socket.on("new_user", function (pseudo) {
-//   $("#conversation").append(`
-//     <div  class="message_container  ">
-//         ${pseudo} just got online!
-//     </div>
-//   `);
-// });
-// socket.on("welcome", (pseudo) => {
-//   $("#conversation").append(`
-//     <div  class="message_container message_container_mb  ">
-//         Welcome ${pseudo}!
-//     </div>
-//   `);
+socket.on("new_user", function (pseudo) {
+  $("#socket_message").html(`${pseudo} just got online!`);
 
-// })
+  if(message_vanish_id) clearTimeout(message_vanish_id);
+  message_vanish_id = setTimeout(() => $("#socket_message").html(''), 4 * 1000)
+});
+socket.on("welcome", (pseudo) => {
+  $("#socket_message").html(`Welcome ${pseudo}!`);
+
+  if(message_vanish_id) clearTimeout(message_vanish_id);
+  message_vanish_id = setTimeout(() => $("#socket_message").html(''), 4 * 1000)
+})
 socket.on("user_left", function (pseudo) {
-    $("#conversation").prepend("<p><em> " + pseudo + " has left </em></p>");
+    $("#socket_message").html(`${pseudo} has left!`);
+
+    if(message_vanish_id) clearTimeout(message_vanish_id);
+    message_vanish_id = setTimeout(() => $("#socket_message").html(''), 4 * 1000)
 });
 
 socket.on("msg", function (data) {
@@ -30,26 +30,48 @@ socket.on("msg", function (data) {
     $("#conversation").animate({ scrollTop:  $('#conversation').prop('scrollHeight')}, 50);
 });
 
-var pseudo = prompt("donnez votre pseudo") || 'anonymous';
-document.title = `${document.title}: ${pseudo}`;
 
-socket.emit("new_user", pseudo);
+let users = []
+let pseudo = null;
 
-$("#send").submit(function () {
-  message = $("#msgcontent").val();
-  socket.emit("msg", { pseudo, message});
-  $(".conversation_container").append(msgcontainer(pseudo, message, true));
-  $("#conversation").animate({ scrollTop:  $('#conversation').prop('scrollHeight')}, 50);
-  message = $("#msgcontent").val("").focus();
-  return false;
+socket.on("receive_users", function (data) {
+    users = data;
+    let prompt_msg = "type your username"
+    while(!pseudo) {
+        pseudo = prompt(prompt_msg);
+        
+        if(pseudo.length < 3){
+            prompt_msg = `${pseudo}: username must be at least of 3 charcaters`;
+            pseudo = null;
+        }
+
+        if(users.indexOf(pseudo) != -1){
+            prompt_msg = `${pseudo} is taken`;
+            pseudo = null;
+        }
+        
+    }
+    document.title = `${document.title}: ${pseudo}`;
+    socket.emit('add_user', pseudo);
+
+   
 });
 
-
+$("#send").submit(function () {
+    message = $("#msgcontent").val();
+    socket.emit("msg", { pseudo, message});
+    $(".conversation_container").append(msgcontainer(pseudo, message, true));
+    $("#conversation").animate({ scrollTop:  $('#conversation').prop('scrollHeight')}, 50);
+    message = $("#msgcontent").val("").focus();
+    return false;
+});
 
 $(window).unload(function(){
     socket.emit("quit", pseudo);
+});
 
- });
+socket.emit("connected_user");
+
 function msgcontainer(pseudo, msg, mine) {
   return (
     `
