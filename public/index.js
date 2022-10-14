@@ -1,4 +1,5 @@
-var socket = io.connect("https://superchat.onrender.com");
+const host = 'http://localhost:3001' // "https://superchat.onrender.com"
+var socket = io.connect();
 var message_vanish_id = null;
 
 
