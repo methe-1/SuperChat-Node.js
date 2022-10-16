@@ -14,5 +14,8 @@
         "socket.io": "~2.2.0"
     },
     "author": "med <ezzmed3@gmail.com>",
-    "description": "application de chat"
+    "description": "application de chat",
+    "devDependencies": {
+        "morgan": "^1.10.0"
+    }
 }
