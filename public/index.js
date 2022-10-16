@@ -1,4 +1,4 @@
-const host = 'http://localhost:3001' // "https://superchat.onrender.com"
+const host =  "https://superchat.onrender.com" // 'http://localhost:3001'
 var socket = io.connect(host);
 
 
